@@ -1,4 +1,4 @@
-# Web Scraper — baza wiedzy do analizy i odbudowy strony
+# Scrappka — baza wiedzy do analizy i odbudowy strony
 
 Aplikacja zbiera zawartość publicznej strony internetowej, porządkuje ją i
 tworzy paczkę wiedzy, którą można przekazać lokalnemu agentowi AI. Agent na jej
@@ -36,13 +36,13 @@ Aplikacja przydaje się, gdy firma chce:
 
 ## Najważniejsze pojęcia
 
-| Pojęcie | Znaczenie |
-|---|---|
-| **Mapowanie** | Odkrywanie adresów podstron przez sitemapę i linki wewnętrzne. Na tym etapie aplikacja tworzy listę URL-i, ale nie zapisuje jeszcze pełnej treści każdej strony. |
-| **Scrapowanie** | Pobranie wybranej podstrony, oczyszczenie jej z elementów technicznych i zapisanie treści jako Markdown. |
-| **Baza wiedzy** | Uporządkowany zestaw treści, faktów, szablonów stron, danych marki i raportów jakości. |
-| **OpenSpec** | Dokumentacja opisująca, co ma zostać zbudowane: cel, decyzje projektowe, wymagania, scenariusze i lista zadań. Nie jest to gotowy kod strony. |
-| **Lokalny agent AI** | Narzędzie uruchomione przez użytkownika na jego komputerze, np. Claude Code, Cursor lub aider. Agent czyta wyeksportowane pliki zgodnie z `PROMPT.md`. |
+| Pojęcie              | Znaczenie                                                                                                                                                        |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Mapowanie**        | Odkrywanie adresów podstron przez sitemapę i linki wewnętrzne. Na tym etapie aplikacja tworzy listę URL-i, ale nie zapisuje jeszcze pełnej treści każdej strony. |
+| **Scrapowanie**      | Pobranie wybranej podstrony, oczyszczenie jej z elementów technicznych i zapisanie treści jako Markdown.                                                         |
+| **Baza wiedzy**      | Uporządkowany zestaw treści, faktów, szablonów stron, danych marki i raportów jakości.                                                                           |
+| **OpenSpec**         | Dokumentacja opisująca, co ma zostać zbudowane: cel, decyzje projektowe, wymagania, scenariusze i lista zadań. Nie jest to gotowy kod strony.                    |
+| **Lokalny agent AI** | Narzędzie uruchomione przez użytkownika na jego komputerze, np. Claude Code, Cursor lub aider. Agent czyta wyeksportowane pliki zgodnie z `PROMPT.md`.           |
 
 ## Jak korzystać z aplikacji
 
@@ -87,12 +87,12 @@ Po mapowaniu lista **Oczekujące** zawiera odkryte adresy. Można:
 
 Domyślnie aktywny jest filtr **Treść**. To najbezpieczniejszy wybór na początek.
 
-| Typ | Co zwykle zawiera | Zalecenie |
-|---|---|---|
-| **Treść** | Strona główna, oferta, produkt, usługa, artykuł, kontakt | Zwykle warto scrapować. |
-| **Listingi** | Kategorie, tagi, archiwa, paginacja i wyniki wyszukiwania | Wybieraj, jeśli ich układ lub opis kategorii ma znaczenie. |
-| **Dokumenty** | Linki do PDF-ów i innych dokumentów | Są rejestrowane, ale obecny scraper treści jest przeznaczony głównie dla HTML. |
-| **Obrazy / zasoby** | Grafiki, skrypty, arkusze stylów i pliki techniczne | Zwykle nie należy ich scrapować jako stron. Informacje o marce są zbierane osobno. |
+| Typ                 | Co zwykle zawiera                                         | Zalecenie                                                                          |
+| ------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| **Treść**           | Strona główna, oferta, produkt, usługa, artykuł, kontakt  | Zwykle warto scrapować.                                                            |
+| **Listingi**        | Kategorie, tagi, archiwa, paginacja i wyniki wyszukiwania | Wybieraj, jeśli ich układ lub opis kategorii ma znaczenie.                         |
+| **Dokumenty**       | Linki do PDF-ów i innych dokumentów                       | Są rejestrowane, ale obecny scraper treści jest przeznaczony głównie dla HTML.     |
+| **Obrazy / zasoby** | Grafiki, skrypty, arkusze stylów i pliki techniczne       | Zwykle nie należy ich scrapować jako stron. Informacje o marce są zbierane osobno. |
 
 #### Zalecany minimalny zestaw
 
@@ -116,13 +116,13 @@ dla każdej podstrony.
 Kliknij **Scrapuj zaznaczone**. Status każdej pozycji będzie aktualizowany na
 bieżąco:
 
-| Status | Znaczenie |
-|---|---|
-| **Oczekuje** | Adres został odkryty, ale jego treść nie została jeszcze pobrana. |
-| **Scrapuje** | Treść jest aktualnie pobierana i przetwarzana. |
-| **Gotowe** | Treść została zapisana poprawnie. |
-| **Bez zmian** | Strona została sprawdzona ponownie, ale jej treść się nie zmieniła. |
-| **Błąd** | Nie udało się pobrać lub przetworzyć strony; szczegóły są dostępne przy statusie. |
+| Status        | Znaczenie                                                                         |
+| ------------- | --------------------------------------------------------------------------------- |
+| **Oczekuje**  | Adres został odkryty, ale jego treść nie została jeszcze pobrana.                 |
+| **Scrapuje**  | Treść jest aktualnie pobierana i przetwarzana.                                    |
+| **Gotowe**    | Treść została zapisana poprawnie.                                                 |
+| **Bez zmian** | Strona została sprawdzona ponownie, ale jej treść się nie zmieniła.               |
+| **Błąd**      | Nie udało się pobrać lub przetworzyć strony; szczegóły są dostępne przy statusie. |
 
 Najczęstsze przyczyny błędów to blokada serwera, timeout, strona wymagająca
 logowania, odpowiedź inna niż HTML albo witryna renderowana wyłącznie przez
@@ -165,20 +165,20 @@ knowledge/
 
 ## Co znajduje się w bazie wiedzy
 
-| Plik / katalog | Do czego służy |
-|---|---|
-| `PROMPT.md` | Główna instrukcja dla agenta AI. Określa kolejność pracy, zasady jakości i format końcowego OpenSpeca. |
-| `knowledge/site.md` | Punkt startowy dla człowieka i agenta: inwentarz stron, nawigacja, drzewo URL-i i rozpoznane typy podstron. |
-| `knowledge/audit.md` | Czytelny raport jakości: słabe ekstrakcje, duplikaty, klastry i elementy wymagające ręcznej kontroli. |
-| `knowledge/audit.json` | Ten sam audyt w formacie maszynowym. |
-| `knowledge/content/*.md` | Oczyszczone treści unikalnych stron, np. strony głównej, kontaktu lub „O nas”. |
-| `knowledge/templates/*.md` | Opis wspólnego układu powtarzalnych stron, np. produktów lub artykułów. |
-| `knowledge/data/*.jsonl` | Dane poszczególnych elementów klastra; jeden obiekt JSON w każdym wierszu. Mogą być później podstawą importu do CMS-a. |
-| `knowledge/facts.jsonl` | Fakty o podwyższonej wiarygodności: ceny, daty, wymiary, dane kontaktowe, identyfikatory i inne wartości wraz ze źródłem. |
-| `knowledge/facts-review.jsonl` | Niepewne wartości. Nie wolno traktować ich jako zatwierdzonych bez sprawdzenia przez człowieka. Plik może nie wystąpić. |
-| `knowledge/brand.json` | Automatycznie wykryte kolory, fonty, logo i favicon. To materiał pomocniczy, nie kompletny brand book. |
-| `knowledge/diagnostics/*.json` | Pewność ekstrakcji i ostrzeżenia dla każdej strony. |
-| `knowledge/raw/*.md` | Oryginalny wynik scrapowania. Używany awaryjnie, gdy treść oczyszczona jest niepełna. |
+| Plik / katalog                 | Do czego służy                                                                                                            |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
+| `PROMPT.md`                    | Główna instrukcja dla agenta AI. Określa kolejność pracy, zasady jakości i format końcowego OpenSpeca.                    |
+| `knowledge/site.md`            | Punkt startowy dla człowieka i agenta: inwentarz stron, nawigacja, drzewo URL-i i rozpoznane typy podstron.               |
+| `knowledge/audit.md`           | Czytelny raport jakości: słabe ekstrakcje, duplikaty, klastry i elementy wymagające ręcznej kontroli.                     |
+| `knowledge/audit.json`         | Ten sam audyt w formacie maszynowym.                                                                                      |
+| `knowledge/content/*.md`       | Oczyszczone treści unikalnych stron, np. strony głównej, kontaktu lub „O nas”.                                            |
+| `knowledge/templates/*.md`     | Opis wspólnego układu powtarzalnych stron, np. produktów lub artykułów.                                                   |
+| `knowledge/data/*.jsonl`       | Dane poszczególnych elementów klastra; jeden obiekt JSON w każdym wierszu. Mogą być później podstawą importu do CMS-a.    |
+| `knowledge/facts.jsonl`        | Fakty o podwyższonej wiarygodności: ceny, daty, wymiary, dane kontaktowe, identyfikatory i inne wartości wraz ze źródłem. |
+| `knowledge/facts-review.jsonl` | Niepewne wartości. Nie wolno traktować ich jako zatwierdzonych bez sprawdzenia przez człowieka. Plik może nie wystąpić.   |
+| `knowledge/brand.json`         | Automatycznie wykryte kolory, fonty, logo i favicon. To materiał pomocniczy, nie kompletny brand book.                    |
+| `knowledge/diagnostics/*.json` | Pewność ekstrakcji i ostrzeżenia dla każdej strony.                                                                       |
+| `knowledge/raw/*.md`           | Oryginalny wynik scrapowania. Używany awaryjnie, gdy treść oczyszczona jest niepełna.                                     |
 
 ## Jak wykorzystać wygenerowaną bazę
 
@@ -359,20 +359,20 @@ bun run test
 
 Wszystkie zmienne są opcjonalne. Przykłady znajdują się w `.env.example`.
 
-| Zmienna | Domyślnie | Znaczenie |
-|---|---:|---|
-| `PORT` | `3000` | Port aplikacji. |
-| `SCRAPED_DIR` | `./scraped_data` | Katalog danych projektów. |
-| `AUTH_USERNAME` | `admin` | Login Basic Auth, używany tylko po ustawieniu hasła. |
-| `AUTH_PASSWORD` | puste | Włącza Basic Auth, gdy ma niepustą wartość. |
-| `SCRAPER_UA` | WebScrapperBot | User-Agent wysyłany do analizowanych stron. |
-| `SCRAPER_TIMEOUT_MS` | `15000` | Timeout pojedynczego żądania HTTP. |
-| `SCRAPER_MAX_BYTES` | `10000000` | Maksymalny rozmiar pojedynczej odpowiedzi. |
-| `SCRAPER_CRAWL_CONCURRENCY` | `5` | Liczba równoległych żądań podczas mapowania. |
-| `SCRAPER_DISCOVER_BATCH` | `25` | Wielkość partii odkrytych URL-i zapisywanych do projektu. |
-| `SCRAPER_DISCOVER_LIMIT` | `5000` | Maksymalna liczba URL-i w jednym mapowaniu. |
-| `SCRAPER_STALL_TIMEOUT_MS` | `120000` | Czas bez aktywności, po którym mapowanie zostaje przerwane. |
-| `SCRAPE_CONCURRENCY` | `8` | Liczba równolegle scrapowanych stron. |
+| Zmienna                     |        Domyślnie | Znaczenie                                                   |
+| --------------------------- | ---------------: | ----------------------------------------------------------- |
+| `PORT`                      |           `3000` | Port aplikacji.                                             |
+| `SCRAPED_DIR`               | `./scraped_data` | Katalog danych projektów.                                   |
+| `AUTH_USERNAME`             |          `admin` | Login Basic Auth, używany tylko po ustawieniu hasła.        |
+| `AUTH_PASSWORD`             |            puste | Włącza Basic Auth, gdy ma niepustą wartość.                 |
+| `SCRAPER_UA`                |   WebScrapperBot | User-Agent wysyłany do analizowanych stron.                 |
+| `SCRAPER_TIMEOUT_MS`        |          `15000` | Timeout pojedynczego żądania HTTP.                          |
+| `SCRAPER_MAX_BYTES`         |       `10000000` | Maksymalny rozmiar pojedynczej odpowiedzi.                  |
+| `SCRAPER_CRAWL_CONCURRENCY` |              `5` | Liczba równoległych żądań podczas mapowania.                |
+| `SCRAPER_DISCOVER_BATCH`    |             `25` | Wielkość partii odkrytych URL-i zapisywanych do projektu.   |
+| `SCRAPER_DISCOVER_LIMIT`    |           `5000` | Maksymalna liczba URL-i w jednym mapowaniu.                 |
+| `SCRAPER_STALL_TIMEOUT_MS`  |         `120000` | Czas bez aktywności, po którym mapowanie zostaje przerwane. |
+| `SCRAPE_CONCURRENCY`        |              `8` | Liczba równolegle scrapowanych stron.                       |
 
 Zwiększanie współbieżności przyspiesza pracę, ale mocniej obciąża analizowaną
 witrynę. W środowisku firmowym lepiej zaczynać od wartości domyślnych.
@@ -395,29 +395,29 @@ zastępuje kopii całego projektu.
 
 ## API — skrót dla zespołu technicznego
 
-| Endpoint | Rola |
-|---|---|
-| `POST /api/app/site/map` | Rozpoczyna mapowanie nowego projektu. |
-| `POST /api/app/site/:host/:timestamp/map/again` | Ponawia mapowanie i dopisuje nowe URL-e. |
-| `POST /api/app/site/:host/:timestamp/map/cancel` | Zatrzymuje mapowanie z zachowaniem odkrytych stron. |
-| `POST /api/app/site/:host/:timestamp/scrape` | Uruchamia scrapowanie wybranych slugów. |
-| `GET /api/app/site/:host/:timestamp/stream` | Strumień SSE ze stanem mapowania i scrapowania. |
-| `GET /api/app/site/:host/:timestamp/knowledge/zip` | Buduje i zwraca aktualną bazę wiedzy. |
-| `GET /api/app/projects` | Zwraca listę projektów. |
-| `GET /api/app/projects/:host/:timestamp` | Zwraca szczegóły projektu. |
-| `DELETE /api/app/projects/:host/:timestamp` | Trwale usuwa projekt. |
-| `GET /api/health` | Endpoint kontroli zdrowia aplikacji. |
+| Endpoint                                           | Rola                                                |
+| -------------------------------------------------- | --------------------------------------------------- |
+| `POST /api/app/site/map`                           | Rozpoczyna mapowanie nowego projektu.               |
+| `POST /api/app/site/:host/:timestamp/map/again`    | Ponawia mapowanie i dopisuje nowe URL-e.            |
+| `POST /api/app/site/:host/:timestamp/map/cancel`   | Zatrzymuje mapowanie z zachowaniem odkrytych stron. |
+| `POST /api/app/site/:host/:timestamp/scrape`       | Uruchamia scrapowanie wybranych slugów.             |
+| `GET /api/app/site/:host/:timestamp/stream`        | Strumień SSE ze stanem mapowania i scrapowania.     |
+| `GET /api/app/site/:host/:timestamp/knowledge/zip` | Buduje i zwraca aktualną bazę wiedzy.               |
+| `GET /api/app/projects`                            | Zwraca listę projektów.                             |
+| `GET /api/app/projects/:host/:timestamp`           | Zwraca szczegóły projektu.                          |
+| `DELETE /api/app/projects/:host/:timestamp`        | Trwale usuwa projekt.                               |
+| `GET /api/health`                                  | Endpoint kontroli zdrowia aplikacji.                |
 
 ## Architektura repozytorium
 
-| Katalog | Odpowiedzialność |
-|---|---|
-| `src/api/` | API Hono i obsługa odpowiedzi HTTP/SSE. |
-| `src/scraper/` | Bezpieczne pobieranie, mapowanie, parsowanie HTML i konwersja do Markdown. |
-| `src/knowledge/` | Czyszczenie, klasyfikacja, deduplikacja, fakty, audyt i budowa ZIP-a. |
-| `src/repositories/` | Zapis i odczyt projektów z systemu plików. |
-| `client/` | Interfejs React. |
-| `deploy/` | Konfiguracja Docker Compose. |
+| Katalog             | Odpowiedzialność                                                           |
+| ------------------- | -------------------------------------------------------------------------- |
+| `src/api/`          | API Hono i obsługa odpowiedzi HTTP/SSE.                                    |
+| `src/scraper/`      | Bezpieczne pobieranie, mapowanie, parsowanie HTML i konwersja do Markdown. |
+| `src/knowledge/`    | Czyszczenie, klasyfikacja, deduplikacja, fakty, audyt i budowa ZIP-a.      |
+| `src/repositories/` | Zapis i odczyt projektów z systemu plików.                                 |
+| `client/`           | Interfejs React.                                                           |
+| `deploy/`           | Konfiguracja Docker Compose.                                               |
 
 Główne technologie: Bun, TypeScript, Hono, React 19, TanStack Router/Query,
 Tailwind CSS, JSDOM, Mozilla Readability i Turndown.
