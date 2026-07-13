@@ -1,4 +1,4 @@
-# Web Scraper — Client
+# Scrappka — Client
 
 Frontend dla systemu mapowania stron, scrapowania podstron i eksportu bazy wiedzy.
 Built with **React 19**, **TanStack Router**, **TanStack Query**, **Tailwind CSS 4**, **Vite**.

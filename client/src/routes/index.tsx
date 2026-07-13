@@ -50,7 +50,7 @@ function Home() {
 		<main className="mx-auto flex max-w-3xl flex-col gap-12 px-8 py-16">
 			<section className="gap-4 flex flex-col">
 				<header>
-					<h1 className="text-2xl font-semibold tracking-tight">Web Scraper</h1>
+					<h1 className="text-2xl font-semibold tracking-tight">Scrappka</h1>
 				</header>
 				<Card>
 					<CardContent>

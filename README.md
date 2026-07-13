@@ -302,7 +302,7 @@ docker compose up -d --build
 
 5. Otwórz `http://localhost:3000/app`.
 
-Dane projektów są przechowywane w wolumenie Dockera `scraped_data` i pozostają
+Dane projektów są przechowywane w wolumenie Dockera `scrappka_data` i pozostają
 po restarcie kontenera. Ustawienie `AUTH_PASSWORD` zabezpiecza aplikację Basic
 Auth; endpoint healthcheck pozostaje dostępny dla Dockera.
 
@@ -389,7 +389,7 @@ scraped_data/<host>/<timestamp>/
 wyniki poszczególnych podstron. Usunięcie projektu z interfejsu usuwa jego dane
 bez możliwości cofnięcia.
 
-W Dockerze należy wykonywać kopię wolumenu `scraped_data` zgodnie z polityką
+W Dockerze należy wykonywać kopię wolumenu `scrappka_data` zgodnie z polityką
 backupów firmy. Sam ZIP z bazą wiedzy jest eksportem do dalszej pracy, ale nie
 zastępuje kopii całego projektu.
 
