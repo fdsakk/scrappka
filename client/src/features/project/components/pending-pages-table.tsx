@@ -15,6 +15,7 @@ import {
 } from "#/components/ui/table";
 import type { PageKind } from "#/lib/types";
 import {
+	errorHttpStatus,
 	filterRows,
 	type PageRow,
 	STATUS_LABEL,
@@ -28,20 +29,24 @@ export function PendingPagesTable({
 	onScrape,
 	filter,
 	activeKinds,
+	showFailed,
 }: {
 	rows: PageRow[];
 	onScrape: (slugs: string[]) => void;
 	filter: string;
 	activeKinds: ReadonlySet<PageKind>;
+	showFailed: boolean;
 }) {
 	const [selected, setSelected] = useState<Set<string>>(new Set());
 
 	const sorted = useMemo(() => {
-		const filtered = filterRows(rows, filter, activeKinds);
+		const filtered = filterRows(rows, filter, activeKinds).filter(
+			(r) => showFailed || r.page.status !== "failed",
+		);
 		return [...filtered].sort((a, b) => a.page.url.length - b.page.url.length);
-	}, [rows, filter, activeKinds]);
+	}, [rows, filter, activeKinds, showFailed]);
 
-	const resetKey = `${filter}|${[...activeKinds].sort().join(",")}`;
+	const resetKey = `${filter}|${[...activeKinds].sort().join(",")}|${showFailed}`;
 	const {
 		page: pageNum,
 		setPage,
@@ -160,6 +165,7 @@ export function PendingPagesTable({
 					{paged.map(({ slug, page: pageMeta }) => {
 						const isFailed = pageMeta.status === "failed";
 						const isScraping = pageMeta.status === "scraping";
+						const httpStatus = errorHttpStatus(pageMeta);
 						return (
 							<TableRow
 								key={slug}
@@ -188,6 +194,7 @@ export function PendingPagesTable({
 											title={isFailed ? pageMeta.error : undefined}
 										>
 											{STATUS_LABEL[pageMeta.status]}
+											{httpStatus !== null ? ` ${httpStatus}` : null}
 										</Badge>
 										{isScraping ? <Spinner /> : null}
 									</span>

@@ -10,7 +10,7 @@ export function TableEmpty({ message }: { message: string }) {
 
 export function TableNoResults() {
 	return (
-		<p className="rounded-md border bg-card px-3 py-6 text-center text-sm text-muted-foreground">
+		<p className="px-3 py-6 text-center text-sm text-muted-foreground">
 			Brak wyników dla filtra.
 		</p>
 	);

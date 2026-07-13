@@ -21,6 +21,12 @@ export const STATUS_VARIANT: Record<
 
 export type PageRow = { slug: string; page: PageMetadata };
 
+export function errorHttpStatus(page: PageMetadata): number | null {
+	if (page.status !== "failed" || !page.error) return null;
+	const match = page.error.match(/\bHTTP (\d{3})\b/);
+	return match ? Number(match[1]) : null;
+}
+
 export function partitionPages(pages: Record<string, PageMetadata>): {
 	doneRows: PageRow[];
 	pendingRows: PageRow[];

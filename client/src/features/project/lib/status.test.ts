@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { PageMetadata } from "#/lib/types";
-import { filterRows, partitionPages } from "./status";
+import { errorHttpStatus, filterRows, partitionPages } from "./status";
 
 const pages: Record<string, PageMetadata> = {
 	home: { url: "https://example.com", status: "done" },
@@ -8,6 +8,30 @@ const pages: Record<string, PageMetadata> = {
 	failed: { url: "https://example.com/fail", status: "failed" },
 	skipped: { url: "https://example.com/old", status: "skipped" },
 };
+
+describe("errorHttpStatus", () => {
+	it("parses the HTTP code from a fetch error message", () => {
+		const page: PageMetadata = {
+			url: "https://x.com/gone",
+			status: "failed",
+			error: "HTTP 404 for https://x.com/gone",
+		};
+		expect(errorHttpStatus(page)).toBe(404);
+	});
+
+	it("returns null for non-HTTP errors and non-failed pages", () => {
+		expect(
+			errorHttpStatus({
+				url: "https://x.com/a",
+				status: "failed",
+				error: "Scraper produced empty markdown (likely JS-rendered page)",
+			}),
+		).toBeNull();
+		expect(
+			errorHttpStatus({ url: "https://x.com/b", status: "done" }),
+		).toBeNull();
+	});
+});
 
 describe("page status helpers", () => {
 	it("partitions done and pending rows", () => {
