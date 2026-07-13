@@ -14,7 +14,11 @@ export function createApp(): Hono {
 
   const config = serverConfig();
   if (config.auth) {
-    app.use("*", basicAuth({ username: config.auth.username, password: config.auth.password }));
+    const authenticate = basicAuth({ username: config.auth.username, password: config.auth.password });
+    app.use("*", (c, next) => {
+      if (c.req.path === "/api/health") return next();
+      return authenticate(c, next);
+    });
     console.log(`[server] basic auth enabled (user: ${config.auth.username})`);
   }
 

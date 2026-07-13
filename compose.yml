@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      SCRAPED_DIR: /data/scraped_data
+      AUTH_USERNAME: ${AUTH_USERNAME:-admin}
+      AUTH_PASSWORD: ${AUTH_PASSWORD:-}
+      SCRAPER_UA: ${SCRAPER_UA:-Mozilla/5.0 (compatible; WebScrapperBot/0.1)}
+      SCRAPER_TIMEOUT_MS: ${SCRAPER_TIMEOUT_MS:-15000}
+      SCRAPER_MAX_BYTES: ${SCRAPER_MAX_BYTES:-10000000}
+      SCRAPER_CRAWL_CONCURRENCY: ${SCRAPER_CRAWL_CONCURRENCY:-5}
+      SCRAPER_DISCOVER_BATCH: ${SCRAPER_DISCOVER_BATCH:-25}
+      SCRAPER_DISCOVER_LIMIT: ${SCRAPER_DISCOVER_LIMIT:-5000}
+      SCRAPER_STALL_TIMEOUT_MS: ${SCRAPER_STALL_TIMEOUT_MS:-120000}
+      SCRAPE_CONCURRENCY: ${SCRAPE_CONCURRENCY:-8}
+    volumes:
+      - scraped_data:/data/scraped_data
+    restart: unless-stopped
+
+volumes:
+  scraped_data:

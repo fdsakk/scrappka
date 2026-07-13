@@ -294,28 +294,29 @@ AUTH_USERNAME=admin
 AUTH_PASSWORD=ustaw-dlugie-losowe-haslo
 ```
 
-4. Zbuduj i uruchom aplikację:
+4. Zbuduj i uruchom aplikację jednym poleceniem:
 
 ```bash
-docker compose -f deploy/docker-compose.yml up -d --build
+docker compose up -d --build
 ```
 
 5. Otwórz `http://localhost:3000/app`.
 
 Dane projektów są przechowywane w wolumenie Dockera `scraped_data` i pozostają
-po restarcie kontenera.
+po restarcie kontenera. Ustawienie `AUTH_PASSWORD` zabezpiecza aplikację Basic
+Auth; endpoint healthcheck pozostaje dostępny dla Dockera.
 
 Przydatne polecenia:
 
 ```bash
 # logi
-docker compose -f deploy/docker-compose.yml logs -f app
+docker compose logs -f app
 
 # zatrzymanie aplikacji bez usuwania danych
-docker compose -f deploy/docker-compose.yml down
+docker compose down
 
 # ponowne zbudowanie po aktualizacji kodu
-docker compose -f deploy/docker-compose.yml up -d --build
+docker compose up -d --build
 ```
 
 Nie używaj `down -v`, jeśli chcesz zachować projekty — parametr `-v` usuwa

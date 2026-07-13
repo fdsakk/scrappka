@@ -6,6 +6,7 @@ import { tmpdir } from "node:os";
 process.env.NODE_ENV = "test";
 
 const { app } = await import("../index.ts");
+const { createApp } = await import("./app.ts");
 
 describe("API", () => {
   beforeEach(async () => {
@@ -16,6 +17,24 @@ describe("API", () => {
     const response = await app.request("/api/health");
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({ ok: true });
+  });
+
+  test("health check stays public when basic auth is enabled", async () => {
+    const previousUsername = process.env.AUTH_USERNAME;
+    const previousPassword = process.env.AUTH_PASSWORD;
+    process.env.AUTH_USERNAME = "health-test";
+    process.env.AUTH_PASSWORD = "health-test-password";
+
+    try {
+      const securedApp = createApp();
+      expect((await securedApp.request("/api/health")).status).toBe(200);
+      expect((await securedApp.request("/api/app")).status).toBe(401);
+    } finally {
+      if (previousUsername === undefined) delete process.env.AUTH_USERNAME;
+      else process.env.AUTH_USERNAME = previousUsername;
+      if (previousPassword === undefined) delete process.env.AUTH_PASSWORD;
+      else process.env.AUTH_PASSWORD = previousPassword;
+    }
   });
 
   test("knowledge zip returns 404 for an unknown project", async () => {
